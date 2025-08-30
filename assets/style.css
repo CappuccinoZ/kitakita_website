@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#center {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ffe4bc;
+}
+
+#counter-container {
+    position: relative;
+    top: 50px;
+    text-align: center;
+    z-index: 10;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 0 20px;
+}
+
+#counter {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+}
+
+#playPause {
+    background-color: #ff9800;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    /* 新增：按钮基础状态优化（可选，增强视觉层次） */
+    box-shadow: 0 4px 6px rgba(255, 152, 0, 0.3);
+    /* 初始阴影 */
+    transform: translateY(0);
+    /* 初始位置 */
+    transition:
+        background-color 0.3s,
+        box-shadow 0.2s,
+        transform 0.15s;
+    /* 统一过渡属性，确保动画流畅 */
+}
+
+/* 新增1：按钮 hover 状态（原有逻辑保留，补充阴影过渡） */
+#playPause:hover {
+    background-color: #f57c00;
+    box-shadow: 0 6px 8px rgba(245, 124, 0, 0.4);
+    /* hover 时阴影加深 */
+}
+
+/* 新增2：按钮按动动画（:active 伪类，点击瞬间触发） */
+#playPause:active {
+    transform: translateY(2px);
+    /* 点击时向下偏移2px，模拟“按下” */
+    box-shadow: 0 2px 4px rgba(245, 124, 0, 0.2);
+    /* 按下时阴影变浅，模拟“凹陷” */
+    background-color: #e67e00;
+    /* 按下时颜色略深，增强反馈 */
+}
+
+/* 图片容器：仅作为定位父级 */
+#images-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.moving-image {
+    position: absolute;
+    display: block;
+    object-fit: contain;
+    opacity: 0;
+    /* 初始完全透明，准备渐入 */
+    transition: none;
+    /* 取消CSS过渡，避免与JS动画冲突 */
+    /* 渐入动画（0.6秒从透明到不透明，仅初始执行1次） */
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* 渐入动画关键帧 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+/* 计数器抖动动画 */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.bounce {
+    animation: bounce 0.3s ease-in-out;
+}

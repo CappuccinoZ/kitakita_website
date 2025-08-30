@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitakita~</title>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+
+<body>
+    <div id="center">
+        <div id="counter-container">
+            <h1 id="page-title">Welcome to Kitakita~</h1>
+            <h2 id="page-descriptions">
+                The website for 喜多喜多.
+            </h2>
+            <h3 id="counter-descriptions">The Kitakita~ has been squished</h3>
+            <div id="counter">
+                <p>0</p>
+            </div>
+            <p id="counter-unit">times</p>
+            <button id="playPause">Kitakita~</button>
+        </div>
+        <!-- 图片容器 -->
+        <div id="images-container"></div>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="audioElement1" preload="auto">
+        <source src="kita/kita1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audioElements = [
+            document.getElementById('audioElement1'),
+        ];
+
+        const imageUrls = [
+            'kita/kita1.png',
+            'kita/kita2.png',
+        ];
+    </script>
+
+    <script src="assets/main.js"></script>
+</body>
+
+</html>
