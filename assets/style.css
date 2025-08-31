@@ -13,12 +13,11 @@ body {
 
 #counter-container {
     position: relative;
-    top: 50px;
     text-align: center;
     z-index: 10;
     padding: 20px;
     border-radius: 12px;
-    margin: 0 20px;
+    margin: 50px 20px;
 }
 
 #counter {
@@ -118,4 +117,15 @@ body {
 
 .bounce {
     animation: bounce 0.3s ease-in-out;
+}
+
+/* 渐隐动画（用于图片移除时平滑消失） */
+@keyframes fadeOut {
+    0% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }

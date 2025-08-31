@@ -16,8 +16,8 @@
                 The website for 喜多喜多.
             </h2>
             <h3 id="counter-descriptions">The Kitakita~ has been squished</h3>
-            <div id="counter">
-                <p>0</p>
+            <div>
+                <p id="counter">0</p>
             </div>
             <p id="counter-unit">times</p>
             <button id="playPause">Kitakita~</button>
@@ -26,22 +26,21 @@
         </div>
         <!-- 图片容器 -->
         <div id="images-container"></div>
+        <!-- 音频容器 -->
+        <div id="audios-container"></div>
     </div>
 
-    <!-- 音频元素 -->
-    <audio id="audioElement1" preload="auto">
-        <source src="kita/kita1.mp3" type="audio/mpeg">
-    </audio>
-
     <script>
-        const audioElements = [
-            document.getElementById('audioElement1'),
-        ];
-
+        // 图片路径
         const imageUrls = [
             'https://imgs.977958.xyz/uploads//68b30d06d4a39_kita1.png',
             'https://imgs.977958.xyz/uploads//68b30d0d2628f_kita2.png',
         ];
+
+        // 音频路径
+        const audioUrls = [
+            'kita/kita1.mp3',
+        ]
     </script>
 
     <script src="assets/main.js"></script>

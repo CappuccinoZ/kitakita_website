@@ -1,10 +1,29 @@
 let count = 0;
-const counterElement = document.querySelector('#counter p');
+const counterElement = document.getElementById('counter');
 const clickButton = document.getElementById('playPause');
 const imagesContainer = document.getElementById('images-container');
+const audiosContainer = document.getElementById('audios-container');
 
 // 存储所有图片元素
 const activeImages = [];
+
+// 存储所有音频元素
+const audioElements = function () {
+    audioUrls.forEach(audioUrl => {
+        const audio = document.createElement('audio');
+        audio.preload = 'auto';
+
+        const source = document.createElement('source');
+        source.src = audioUrl;
+        source.type = 'audio/mpeg';
+
+        audio.appendChild(source);
+        audiosContainer.appendChild(audio);
+    });
+
+    return audiosContainer.childNodes;
+}();
+
 // 视口尺寸（避免频繁获取）
 let viewportWidth = window.innerWidth;
 let viewportHeight = window.innerHeight;
@@ -23,8 +42,7 @@ function playRandomAudioAndImage() {
     setTimeout(() => counterElement.classList.remove('bounce'), 300);
 
     // 随机播放音频
-    const randomAudioIndex = Math.floor(Math.random() * audioElements.length);
-    playAudio(audioElements[randomAudioIndex]);
+    playNewAudio();
 
     // 生成新图片（无数量限制）
     createNewImage();
@@ -94,7 +112,7 @@ function createNewImage() {
         // 6. 启动图片运动和持续旋转
         animateImage(img);
 
-        // // （可选）图片存在15秒后自动移除（避免无限堆积卡顿）
+        // （可选）图片存在15秒后自动移除（避免无限堆积卡顿）
         // setTimeout(() => {
         //     if (activeImages.includes(img)) {
         //         // 移除前添加渐隐动画，避免突然消失
@@ -163,6 +181,12 @@ function animateImage(img) {
     }
 }
 
+// 随机播放音频
+function playNewAudio() {
+    const randomAudioIndex = Math.floor(Math.random() * audioElements.length);
+    playAudio(audioElements[randomAudioIndex]);
+}
+
 // 音频播放函数
 function playAudio(audio) {
     try {
@@ -178,13 +202,3 @@ function playAudio(audio) {
 
 // 绑定按钮点击事件
 clickButton.addEventListener('click', playRandomAudioAndImage);
-
-// 渐隐动画（用于图片移除时平滑消失）
-const fadeOutStyle = document.createElement('style');
-fadeOutStyle.textContent = `
-    @keyframes fadeOut {
-        0% { opacity: 0.9; }
-        100% { opacity: 0; }
-    }
-`;
-document.head.appendChild(fadeOutStyle);
